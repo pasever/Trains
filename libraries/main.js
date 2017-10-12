@@ -22,7 +22,7 @@ var database = firebase.database();
  setInterval(function(){ 
 $(".hours").html(moment().hours());
 $(".minutes").html(moment().minutes());
-$(".seconds").html(moment().seconds());
+//$(".seconds").html(moment().seconds());
 }, 1000); 
 
 
@@ -40,13 +40,13 @@ $("#submitButton").on("click", function (event) {
 
     //firstTrainTime = $("#fieldFirstTr").val().trim();
 
-    setInterval(function () {
-    
+       
     var formated = moment(firstTrain, "hh:mm").subtract(1, "years");
     var diff = moment().diff(moment(formated), "minutes");
     var apart = diff % frequency;
     var away = frequency - apart;
     var arrival = moment().add(away, "minutes").format("hh:mm");
+
 
     database.ref().push({
         train: train,
@@ -57,7 +57,7 @@ $("#submitButton").on("click", function (event) {
         away: away
                 // dateAdded: firebase.database.ServerValue.TIMESTAMP
     });
-}, 100);
+
 
     console.log(train);
     console.log(destination);
