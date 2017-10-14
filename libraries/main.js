@@ -20,8 +20,8 @@ setInterval(function () {
 //$(".seconds").html(moment().seconds());
 }, 1000);
 
-var now = moment();
-var time = now.hour() + ':' + now.minutes() + ':' + now.seconds();
+//var now = moment();
+//var time = now.hour() + ':' + now.minutes() + ':' + now.seconds();
 //console.log(time);
 
 
@@ -32,27 +32,27 @@ database.ref().on("value", function (snapshot) {
     var snap = snapshot.val();
     var fireArray = Object.keys(snap);
     //console.log(fireArray.length);
-    nextAway = [];
+    var nextAway = [];
     for (var i = 0; i < fireArray.length; i++) {
 
         var getKey = fireArray[i];
         //console.log(getKey);
         var getObj = snap[getKey];
         //console.log(getObj);
-        console.log(getObj);
+        //console.log(getObj);
 
         var formated = moment(getObj.firstTrain, "hh:mm").subtract(1, "years");
-        console.log("First Train: " + getObj.firstTrain);
+        //console.log("First Train: " + getObj.firstTrain);
         var diff = moment().diff(moment(formated), "minutes");
         var apart = diff % getObj.frequency;
-        console.log("Frequency: " + getObj.frequency);
+        //console.log("Frequency: " + getObj.frequency);
         var away = getObj.frequency - apart;
         nextAway.push(away);
         var whereTo = getObj.destination;
-        console.log(whereTo);
+        //console.log(whereTo);
         //nextAway.push(whereTo);
-        console.log(nextAway);
-        console.log("Destination is: " + whereTo);
+        //console.log(nextAway);
+        //console.log("Destination is: " + whereTo);
         var next = Math.min(...nextAway);
 //        var aaaaa = nextAway.indexOf(next);
 //        console.log(aaaaa);
@@ -61,21 +61,21 @@ database.ref().on("value", function (snapshot) {
 //        
 //        console.log(aaaaa);
         //console.log(getObj.indexOf(next));
-        $(".next").html(next);       
-        console.log("Minutes away: " + away);
+        $(".next").html(next);
+        //console.log("Minutes away: " + away);
         var arrival = moment().add(away, "minutes").format("hh:mm");
-        console.log("Next Arrival: " + arrival);
+        //console.log("Next Arrival: " + arrival);
 
 //snapshot.preventDefault();
 //   var clean = $("#tbody").append();
 //   clean.html();
 
         $("#tbody").text();
-        
+
         var newTR = $("<tr>");
         $("#tbody").append(newTR);
         newTR.append("<td>" + $('#tbody tr').length + "</td>");
-        console.log(getObj);
+        //console.log(getObj);
         newTR.append("<td>" + getObj.train + "</td>");
         newTR.append("<td>" + getObj.destination + "</td>");
         newTR.append("<td>" + getObj.frequency + "</td>");
@@ -120,10 +120,10 @@ $("#submitButton").on("click", function (event) {
     });
 
 
-    console.log(train);
-    console.log(destination);
-    console.log(firstTrain);
-    console.log(frequency);
+    //console.log(train);
+    //console.log(destination);
+    //console.log(firstTrain);
+    //console.log(frequency);
 
     $("#fieldTrain").val("");
     $("#fieldDest").val("");
@@ -135,7 +135,7 @@ $("#submitButton").on("click", function (event) {
 
 database.ref().on("child_added", function (snapshot) {
 
-    console.log(snapshot.val());
+    //console.log(snapshot.val());
 
     var newTR = $("<tr>");
     $("#tbody").append(newTR);
@@ -149,22 +149,23 @@ database.ref().on("child_added", function (snapshot) {
 
 
 
-$(document).ready(function(){
-  setInterval(function(){
-    $('.flash').toggleClass('active');
-  }, 1500);
+$(document).ready(function () {
+    setInterval(function () {
+        $('.flash').toggleClass('active');
+    }, 1500);
 });
 
 function getRandomColor() {
-  var letters = '0123456789ABCDEF';
-  var color = '#';
-  for (var i = 0; i < 6; i++) {
-    color += letters[Math.floor(Math.random() * 16)];
-  }
-  return color;
+    var letters = '0123456789ABCDEF';
+    var color = '#';
+    for (var i = 0; i < 6; i++) {
+        color += letters[Math.floor(Math.random() * 16)];
+    }
+    return color;
 }
-$(document).ready(function(){
-  setInterval(function flash() {
-  $(".flash").css("color", getRandomColor());
-}, 1500);
+
+$(document).ready(function () {
+    setInterval(function flash() {
+        $(".flash").css("color", getRandomColor());
+    }, 1500);
 });

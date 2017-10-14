@@ -1,7 +1,7 @@
 h3 {
-  padding: 20px 0;
-  text-align: center;
-  font-size: 1.9em;
+    padding: 20px 0;
+    text-align: center;
+    font-size: 1.9em;
 }
 body {
     background-color: rgb(252, 230, 226);
@@ -11,20 +11,20 @@ body {
     background-color: rgb(44, 154, 229);
 }
 table {
-  width: 100%;
-  margin: 0;
+    width: 100%;
+    margin: 0;
 }
 #firstLine {
     height: 50px;
 }
 table caption {
-  font-size: .8em;
-/*	padding: .5em 0;*/
+    font-size: .8em;
+    /*	padding: .5em 0;*/
 }
 
 table caption,
 table tfoot tr td {
-  font-weight: normal;
+    font-weight: normal;
 
 }
 
@@ -33,14 +33,14 @@ td {
 }
 
 @media screen and (max-width: 766px) {
-  table caption {
-    display: none;
-  }
+    table caption {
+        display: none;
+    }
 }
 
 .p {
-  text-align: center;
-  padding-top: 140px;
-  font-size: 12px;
+    text-align: center;
+    padding-top: 140px;
+    font-size: 12px;
 }
 
