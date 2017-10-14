@@ -32,13 +32,14 @@ database.ref().on("value", function (snapshot) {
     var snap = snapshot.val();
     var fireArray = Object.keys(snap);
     //console.log(fireArray.length);
-
+    nextAway = [];
     for (var i = 0; i < fireArray.length; i++) {
 
         var getKey = fireArray[i];
         //console.log(getKey);
         var getObj = snap[getKey];
         //console.log(getObj);
+        console.log(getObj);
 
         var formated = moment(getObj.firstTrain, "hh:mm").subtract(1, "years");
         console.log("First Train: " + getObj.firstTrain);
@@ -46,6 +47,21 @@ database.ref().on("value", function (snapshot) {
         var apart = diff % getObj.frequency;
         console.log("Frequency: " + getObj.frequency);
         var away = getObj.frequency - apart;
+        nextAway.push(away);
+        var whereTo = getObj.destination;
+        console.log(whereTo);
+        //nextAway.push(whereTo);
+        console.log(nextAway);
+        console.log("Destination is: " + whereTo);
+        var next = Math.min(...nextAway);
+//        var aaaaa = nextAway.indexOf(next);
+//        console.log(aaaaa);
+        //var nextDest = getObj.indexOf(Math.min(...nextAway));
+        //console.log(nextDest);
+//        
+//        console.log(aaaaa);
+        //console.log(getObj.indexOf(next));
+        $(".next").html(next);       
         console.log("Minutes away: " + away);
         var arrival = moment().add(away, "minutes").format("hh:mm");
         console.log("Next Arrival: " + arrival);
