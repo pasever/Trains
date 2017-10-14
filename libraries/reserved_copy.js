@@ -14,6 +14,10 @@ firebase.initializeApp(config);
 var database = firebase.database();
 
 
+//setInterval(function(){
+//    $('#firstLine').html(moment().format('hh:mm:ss A'))
+//  }, 1000);
+//  
 setInterval(function () {
     $(".hours").html(moment().hours());
     $(".minutes").html(moment().minutes());
@@ -22,52 +26,10 @@ setInterval(function () {
 
 var now = moment();
 var time = now.hour() + ':' + now.minutes() + ':' + now.seconds();
-//console.log(time);
+console.log(time);
 
 
 var count = $('#tbody tr').length;
-
-database.ref().on("value", function (snapshot) {
-
-    var snap = snapshot.val();
-    var fireArray = Object.keys(snap);
-    //console.log(fireArray.length);
-
-    for (var i = 0; i < fireArray.length; i++) {
-
-        var getKey = fireArray[i];
-        //console.log(getKey);
-        var getObj = snap[getKey];
-        //console.log(getObj);
-
-        var formated = moment(getObj.firstTrain, "hh:mm").subtract(1, "years");
-        console.log("First Train: " + getObj.firstTrain);
-        var diff = moment().diff(moment(formated), "minutes");
-        var apart = diff % getObj.frequency;
-        console.log("Frequency: " + getObj.frequency);
-        var away = getObj.frequency - apart;
-        console.log("Minutes away: " + away);
-        var arrival = moment().add(away, "minutes").format("hh:mm");
-        console.log("Next Arrival: " + arrival);
-
-//snapshot.preventDefault();
-//   var clean = $("#tbody").append();
-//   clean.html();
-
-        $("#tbody").text();
-        
-        var newTR = $("<tr>");
-        $("#tbody").append(newTR);
-        newTR.append("<td>" + $('#tbody tr').length + "</td>");
-        console.log(getObj);
-        newTR.append("<td>" + getObj.train + "</td>");
-        newTR.append("<td>" + getObj.destination + "</td>");
-        newTR.append("<td>" + getObj.frequency + "</td>");
-        newTR.append("<td>" + arrival + "</td>");
-        newTR.append("<td>" + away + "</td>");
-    }
-});
-
 
 $("#submitButton").on("click", function (event) {
 
@@ -133,22 +95,5 @@ database.ref().on("child_added", function (snapshot) {
 
 
 
-$(document).ready(function(){
-  setInterval(function(){
-    $('.flash').toggleClass('active');
-  }, 1500);
-});
 
-function getRandomColor() {
-  var letters = '0123456789ABCDEF';
-  var color = '#';
-  for (var i = 0; i < 6; i++) {
-    color += letters[Math.floor(Math.random() * 16)];
-  }
-  return color;
-}
-$(document).ready(function(){
-  setInterval(function flash() {
-  $(".flash").css("color", getRandomColor());
-}, 1500);
-});
+

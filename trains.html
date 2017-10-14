@@ -7,7 +7,7 @@
         <link rel="stylesheet" href="css/reset.css">
         <link rel="stylesheet" href="https://dhbhdrzi4tiry.cloudfront.net/cdn/sites/foundation.min.css">
         <link rel="stylesheet" href="css/style.css">
-        
+
     </head>
     <body>
 
@@ -32,22 +32,23 @@
         <div class="callout">
             <div class="row column text-center">
                 <ul class="vertical medium-horizontal menu expanded text-center">
-                    <li><a href="#"><div class="stat hours">28</div><span>Hour(s)</span></a></li>
-                    <li><a href="#"><div class="stat minutes">43</div><span>Minute(s)</span></a></li>
-<!--                    <li><a href="#"><div class="stat seconds">43</div><span>Second(s)</span></a></li>-->
-                    <li><a href="#"><div class="stat"><h1 id="railroads">Railroads</h1></div></a></li>
-                    <li><a href="#"><div class="stat">59</div><span>Next Train min</span></a></li>
+                    <li><a href="#"><div class="stat hours">00</div><span>Hour(s)</span></a></li>
+                    <li><a href="#"><div class="stat">:</div><span></span></a></li>
+                    <li><a href="#"><div class="stat minutes">00</div><span>Minute(s)</span></a></li>
+
+                    <!--                    <li><a href="#"><div class="stat seconds">43</div><span>Second(s)</span></a></li>-->
+                    <li><a href="#"><div class="stat flash"><h1 id="Railroads"> Pastown Railroads Live</h1></div></a></li>
+                    <li><a href="#"><div class="stat">59</div><span>Next Train (min)</span></a></li>
                     <li><a href="#"><div class="stat">CLT</div><span>Destination</span></a></li>
+                    <li><div class="stat"></div></li>
                 </ul>
             </div>
         </div>
         <div class="row column">
 
         </div>
-
-
+        
         <hr>
-
         <!--            <h3 class="">Current Train Schedule</h3>-->
 
         <div class="row">
@@ -64,14 +65,14 @@
                         </tr>
                     </thead>
                     <tbody id="tbody">
-                        <tr>
-                            <td>1</td>
-                            <td>Buenos Aires</td>
-                            <td>San Justo</td>
-                            <td>37</td>
-                            <td>4:19</td>
-                            <td>19</td>
-                        </tr>
+                        <!--                        <tr>
+                                                    <td>1</td>
+                                                    <td>Buenos Aires</td>
+                                                    <td>San Justo</td>
+                                                    <td>37</td>
+                                                    <td>4:19</td>
+                                                    <td>19</td>
+                                                </tr>-->
                     </tbody>
                 </table>
             </div>
@@ -84,17 +85,18 @@
                             <label for="fieldTrain">Train name</label>
                             <input id="fieldTrain" type="text" class="getinfo" required="" maxlength="20" name="name" placeholder="Name">
                         </div>
-                        <div class="small-12 medium-6 column">
+                        <div class="small-12 medium-6 column error">
                             <label for="fieldDest">Destination</label>
                             <input id="fieldDest" type="text" class="getinfo" required="" maxlength="20" name="Company" placeholder="Destination">
+                            <small></small>
                         </div>
                         <div class="small-12 medium-6 column">
                             <label for="fieldFirstTr">First train time</label>
-                            <input id="fieldFirstTr" type="text" class="getinfo" required="" maxlength="20" name="email" placeholder="HH:MM">
+                            <input id="fieldFirstTr" type="text" class="getinfo" required="" maxlength="5" placeholder="HH:MM">
                         </div>
                         <div class="small-12 medium-6 column">
                             <label for="fieldFrequency">Frequency (min)</label>
-                            <input id="fieldFrequency" type="text" class="getinfo" required="" maxlength="20" name="name" placeholder="Frequency">
+                            <input id="fieldFrequency" type="number" class="getinfo" required="" maxlength="20" name="name" placeholder="Frequency">
                         </div>
                         <div class="medium-12 column form-contact-form-button">
                             <button type="submit" id="submitButton" class="expanded large button radius home-form-submit-button ">Add a train</button>
@@ -117,7 +119,7 @@
         <script src="https://dhbhdrzi4tiry.cloudfront.net/cdn/sites/foundation.js"></script>
         <script src="libraries/main.js"></script>
         <script>
-          //$(document).foundation();
+            //$(document).foundation();
         </script>
     </body>
 </html>
