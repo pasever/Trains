@@ -20,10 +20,7 @@ setInterval(function () {
 //$(".seconds").html(moment().seconds());
 }, 1000);
 
-//var now = moment();
-//var time = now.hour() + ':' + now.minutes() + ':' + now.seconds();
-//console.log(time);
-
+var nextAway = [];
 
 var count = $('#tbody tr').length;
 
@@ -31,58 +28,79 @@ database.ref().on("value", function (snapshot) {
 
     var snap = snapshot.val();
     var fireArray = Object.keys(snap);
-    //console.log(fireArray.length);
-    var nextAway = [];
+    var snap = snapshot.val();
+    var fireArray = Object.keys(snap);
+    nextAway = [];
+    
+     $("#tbody").empty();
+    
     for (var i = 0; i < fireArray.length; i++) {
 
         var getKey = fireArray[i];
-        //console.log(getKey);
         var getObj = snap[getKey];
-        //console.log(getObj);
-        //console.log(getObj);
-
         var formated = moment(getObj.firstTrain, "hh:mm").subtract(1, "years");
-        //console.log("First Train: " + getObj.firstTrain);
         var diff = moment().diff(moment(formated), "minutes");
         var apart = diff % getObj.frequency;
-        //console.log("Frequency: " + getObj.frequency);
         var away = getObj.frequency - apart;
-        nextAway.push(away);
+        var arrival = moment().add(away, "minutes").format("HH:mm");
         var whereTo = getObj.destination;
-        //console.log(whereTo);
-        //nextAway.push(whereTo);
-        //console.log(nextAway);
-        //console.log("Destination is: " + whereTo);
-        var next = Math.min(...nextAway);
-//        var aaaaa = nextAway.indexOf(next);
-//        console.log(aaaaa);
-        //var nextDest = getObj.indexOf(Math.min(...nextAway));
-        //console.log(nextDest);
-//        
-//        console.log(aaaaa);
-        //console.log(getObj.indexOf(next));
-        $(".next").html(next);
-        //console.log("Minutes away: " + away);
-        var arrival = moment().add(away, "minutes").format("hh:mm");
-        //console.log("Next Arrival: " + arrival);
 
-//snapshot.preventDefault();
-//   var clean = $("#tbody").append();
-//   clean.html();
-
-        $("#tbody").text();
+        nextAway.push({...getObj, away});
 
         var newTR = $("<tr>");
         $("#tbody").append(newTR);
         newTR.append("<td>" + $('#tbody tr').length + "</td>");
-        //console.log(getObj);
         newTR.append("<td>" + getObj.train + "</td>");
         newTR.append("<td>" + getObj.destination + "</td>");
         newTR.append("<td>" + getObj.frequency + "</td>");
         newTR.append("<td>" + arrival + "</td>");
         newTR.append("<td>" + away + "</td>");
     }
+
+    console.log(nextAway);
+
+    if (nextAway.length) {
+
+        nextAway.sort(function (a, b) {
+            if (a.away >= b.away)
+                return 1;
+            else
+                return -1;
+        });
+
+        $(".next").html(nextAway[0].away);
+        $(".nextDest").html(nextAway[0].destination);
+
+    }
+
 });
+
+/*
+ var minArray = [];
+ 
+ function findNext() {
+ var len = nextAway.length;
+ for (var i = 0; i < len; i++) {
+ if (i === 0) {
+ minArray.push(nextAway[i]);
+ } else {
+ if (nextAway[i].away < minArray[0].away) {
+ minArray.pop();
+ minArray.push(nextAway[i]);
+ }
+ 
+ }
+ 
+ }
+ //console.log(minArray[0].away);
+ //console.log(minArray[0].destination);    
+ 
+ $(".next").html(minArray[0].away);
+ $(".nextDest").html(minArray[0].destination);
+ 
+ 
+ }
+ */
 
 
 $("#submitButton").on("click", function (event) {
@@ -94,8 +112,6 @@ $("#submitButton").on("click", function (event) {
     var destination = $("#fieldDest").val().trim();
     var firstTrain = $("#fieldFirstTr").val().trim();
     var frequency = $("#fieldFrequency").val().trim();
-
-    //firstTrainTime = $("#fieldFirstTr").val().trim();
 
 
     var formated = moment(firstTrain, "hh:mm").subtract(1, "years");
@@ -119,12 +135,6 @@ $("#submitButton").on("click", function (event) {
                 // dateAdded: firebase.database.ServerValue.TIMESTAMP
     });
 
-
-    //console.log(train);
-    //console.log(destination);
-    //console.log(firstTrain);
-    //console.log(frequency);
-
     $("#fieldTrain").val("");
     $("#fieldDest").val("");
     $("#fieldFirstTr").val("");
@@ -133,7 +143,7 @@ $("#submitButton").on("click", function (event) {
 
 });
 
-database.ref().on("child_added", function (snapshot) {
+database.ref().once("child_added", function (snapshot) {
 
     //console.log(snapshot.val());
 
@@ -145,9 +155,8 @@ database.ref().on("child_added", function (snapshot) {
     newTR.append("<td>" + snapshot.val().frequency + "</td>");
     newTR.append("<td>" + snapshot.val().arrival + "</td>");
     newTR.append("<td>" + snapshot.val().away + "</td>");
+
 });
-
-
 
 $(document).ready(function () {
     setInterval(function () {
