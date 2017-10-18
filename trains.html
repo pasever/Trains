@@ -4,121 +4,115 @@
         <meta charset="utf-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <title>Trains Table Map</title>
+        <!-- CSS -->
         <link rel="stylesheet" href="css/reset.css">
         <link rel="stylesheet" href="https://dhbhdrzi4tiry.cloudfront.net/cdn/sites/foundation.min.css">
         <link rel="stylesheet" href="css/style.css">
+        <link rel="stylesheet" href="css/alertify.css">
 
-    </head>
-    <body>
 
 
         <!-- Start Top Bar -->
-        <div class="top-bar">
-            <div class="top-bar-left">
-                <ul class="menu">
-                    <li class="menu-text">Evgheni Pascalov</li>
-                </ul>   
-            </div>
-            <div class="top-bar-right">
-                <ul class="menu">
-                    <li><a href="#">Main</a></li>
-                    <li><a href="#">Portfolio</a></li>
-                    <li><a href="#">Contact</a></li>
-                    <li></li>
-                </ul>
-            </div>
+    <div class="top-bar">
+        <div class="top-bar-left">
+            <ul class="menu">
+                <li class="menu-text">Evgheni Pascalov</li>
+            </ul>   
         </div>
-        <!-- End Top Bar -->
-        <div class="callout">
-            <div class="row column text-center">
-                <ul class="vertical medium-horizontal menu expanded text-center">
-                    <li><a href="#"><div class="stat hours">00</div><span>Hour(s)</span></a></li>
-                    <li><a href="#"><div class="stat">:</div><span></span></a></li>
-                    <li><a href="#"><div class="stat minutes">00</div><span>Minute(s)</span></a></li>
+        <div class="top-bar-right">
+            <ul class="menu">
+                <li><a href="#">About</a></li>
+                <li><a href="#">Portfolio</a></li>
+                <li><a href="#">Contact</a></li>
+                <li></li>
+            </ul>
+        </div>
+    </div>
+    <!-- End Top Bar -->
+    <div class="callout">
+        <div class="row column text-center">
+            <ul class="vertical medium-horizontal menu expanded text-center">
+                <li><a href="#"><div class="stat hours">00</div><span>Hour(s)</span></a></li>
+                <li><a href="#"><div class="stat">:</div><span></span></a></li>
+                <li><a href="#"><div class="stat minutes">00</div><span>Minute(s)</span></a></li>
 
-                    <!--                    <li><a href="#"><div class="stat seconds">43</div><span>Second(s)</span></a></li>-->
-                    <li><a href="#"><div class="stat flash"><h1 id="Railroads"> Pastown Railroads Live</h1></div></a></li>
-                    <li><a href="#"><div class="stat next">Calculating...</div><span>Next Train (min)</span></a></li>
-                    <li><a href="#"><div class="stat nextDest">Updating City</div><span>Destination</span></a></li>
-                    <li><div class="stat"></div></li>
-                </ul>
-            </div>
-        </div>  
+                <!--                    <li><a href="#"><div class="stat seconds">43</div><span>Second(s)</span></a></li>-->
+                <li><a href="#"><div class="stat flash"><h1 id="Railroads"> Pastown Railroads Live</h1></div></a></li>
+                <li><a href="#"><div class="stat next">Calculating...</div><span>Next Train (min)</span></a></li>
+                <li><a href="#"><div class="stat nextDest">Updating City</div><span>Destination</span></a></li>
+                <li><div class="stat"></div></li>
+            </ul>
+        </div>
+    </div>  
 
-        <hr>
-        <!--            <h3 class="">Current Train Schedule</h3>-->
+    <hr>
 
-        <div class="row">
-            <div class="large-12 column">
-                <table summary="This table shows how to create responsive tables using Foundation's extended functionality" class="responsive">
-                    <thead class="trains">
-                        <tr>
-                            <th>No</th>
-                            <th id="firstLine">Train Name</th>
-                            <th>Destination</th>
-                            <th>Frequency (min)</th>
-                            <th>Next arrival</th>
-                            <th>Minutes away</th>
-                        </tr>
-                    </thead>
-                    <tbody id="tbody">
-                        <!--                        <tr>
-                                                    <td>1</td>
-                                                    <td>Buenos Aires</td>
-                                                    <td>San Justo</td>
-                                                    <td>37</td>
-                                                    <td>4:19</td>
-                                                    <td>19</td>
-                                                </tr>-->
-                    </tbody>
-                </table>
-            </div>
-        </div><hr>
-        <div class="row align-center">
-            <div class="small-11 medium-8 large-11 column footer-contact-form small-centered" style="position:relative;">
-                <form class="request-form">
-                    <div class="row">
-                        <div class="small-12 medium-6 column">
-                            <label for="fieldTrain">Train name</label>
-                            <input id="fieldTrain" type="text" class="getinfo" required="" maxlength="20" name="name" placeholder="Name">
-                        </div>
-                        <div class="small-12 medium-6 column error">
-                            <label for="fieldDest">Destination</label>
-                            <input id="fieldDest" type="text" class="getinfo" required="" maxlength="20" name="Company" placeholder="Destination">
-                            <small></small>
-                        </div>
-                        <div class="small-12 medium-6 column">
-                            <label for="fieldFirstTr">First train time</label>
-                            <input id="fieldFirstTr" type="text" class="getinfo" required="" maxlength="5" placeholder="HH:MM">
-                        </div>
-                        <div class="small-12 medium-6 column">
-                            <label for="fieldFrequency">Frequency (min)</label>
-                            <input id="fieldFrequency" type="number" class="getinfo" required="" maxlength="20" name="name" placeholder="Frequency">
-                        </div>
-                        <div class="medium-12 column form-contact-form-button">
-                            <button type="submit" id="submitButton" class="expanded large button radius home-form-submit-button ">Add a train</button>
-                        </div>
+    <div class="row">
+        <div class="large-12 column">
+            <table summary="This table shows how to create responsive tables using Foundation's extended functionality" class="responsive">
+                <thead class="trains">
+                    <tr>
+                        <th>No</th>
+                        <th id="firstLine">Train Name</th>
+                        <th>Destination</th>
+                        <th>Frequency (min)</th>
+                        <th>Next arrival</th>
+                        <th>Minutes away</th>
+                    </tr>
+                </thead>
+                <tbody id="tbody">
+                </tbody>
+            </table>
+        </div>
+    </div><hr>
+    <div class="row align-center">
+        <div class="small-11 medium-8 large-11 column footer-contact-form small-centered" style="position:relative;">
+            <form class="request-form">
+                <div class="row">
+                    <div class="small-12 medium-6 column">
+                        <label for="fieldTrain">Train name</label>
+                        <input id="fieldTrain" type="text" class="getinfo" required="" maxlength="20" name="name" placeholder="Name">
                     </div>
-                </form>
-            </div>
+                    <div class="small-12 medium-6 column error">
+                        <label for="fieldDest">Destination</label>
+                        <input id="fieldDest" type="text" class="getinfo" required="" maxlength="20" name="Company" placeholder="Destination">
+                        <small></small>
+                    </div>
+                    <div class="small-12 medium-6 column">
+                        <label for="fieldFirstTr">First train time</label>
+                        <input id="fieldFirstTr" type="text" class="getinfo" required="" maxlength="5" placeholder="HH:MM">
+                    </div>
+                    <div class="small-12 medium-6 column">
+                        <label for="fieldFrequency">Frequency (min)</label>
+                        <input id="fieldFrequency" type="number" class="getinfo" required="" maxlength="20" name="name" placeholder="Frequency">
+                    </div>
+                    <div class="medium-12 column form-contact-form-button">
+                        <button type="submit" id="submitButton" class="expanded large button radius home-form-submit-button ">Add a train</button>
+                    </div>
+                </div>
+            </form>
         </div>
+    </div>
 
-        <hr>
+    <hr>
 
-        <footer class="footer">
+    <footer class="footer">
 
-            <p class="text-center" id="footerText">&copy; Copyright 2017 Evgheni Pascalov</p>
+        <p class="text-center" id="footerText">&copy; Copyright 2017 Evgheni Pascalov</p>
 
-        </footer>
-        <script src="https://www.gstatic.com/firebasejs/4.5.0/firebase.js"></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.19.0/moment.min.js"></script>
-        <script src="https://code.jquery.com/jquery-2.1.4.min.js"></script>
-        <script src="https://dhbhdrzi4tiry.cloudfront.net/cdn/sites/foundation.js"></script>
-        <script src="libraries/main.js"></script>
-        <script>
-            //$(document).foundation();
-        </script>
-    </body>
+    </footer>
+
+    <script src="https://www.gstatic.com/firebasejs/4.5.0/firebase.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.19.0/moment.min.js"></script>
+    <script src="https://code.jquery.com/jquery-2.1.4.min.js"></script>
+    <script src="https://dhbhdrzi4tiry.cloudfront.net/cdn/sites/foundation.js"></script>
+    <script src="libraries/alertify.js"></script>
+    <script src="libraries/main.js"></script>
+
+    <script>
+        //$(document).foundation();
+    </script>
+</body>
 </html>
 
 

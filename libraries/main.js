@@ -1,5 +1,5 @@
 $(document).ready(function () {});
-
+//alertify.alert('Ready!');
 // Initialize Firebase
 var config = {
     apiKey: "AIzaSyD4zU3ISjRmaA-LReFF5FtWjnyz5i8VLpE",
@@ -12,7 +12,6 @@ var config = {
 firebase.initializeApp(config);
 
 var database = firebase.database();
-
 
 setInterval(function () {
     $(".hours").html(moment().hours());
@@ -29,11 +28,10 @@ database.ref().on("value", function (snapshot) {
     var snap = snapshot.val();
     var fireArray = Object.keys(snap);
     var snap = snapshot.val();
-    var fireArray = Object.keys(snap);
     nextAway = [];
-    
-     $("#tbody").empty();
-    
+    console.log(fireArray);
+    $("#tbody").empty();
+
     for (var i = 0; i < fireArray.length; i++) {
 
         var getKey = fireArray[i];
@@ -45,7 +43,7 @@ database.ref().on("value", function (snapshot) {
         var arrival = moment().add(away, "minutes").format("HH:mm");
         var whereTo = getObj.destination;
 
-        nextAway.push({...getObj, away});
+        nextAway.push({...getObj, away}); 
 
         var newTR = $("<tr>");
         $("#tbody").append(newTR);
@@ -75,34 +73,6 @@ database.ref().on("value", function (snapshot) {
 
 });
 
-/*
- var minArray = [];
- 
- function findNext() {
- var len = nextAway.length;
- for (var i = 0; i < len; i++) {
- if (i === 0) {
- minArray.push(nextAway[i]);
- } else {
- if (nextAway[i].away < minArray[0].away) {
- minArray.pop();
- minArray.push(nextAway[i]);
- }
- 
- }
- 
- }
- //console.log(minArray[0].away);
- //console.log(minArray[0].destination);    
- 
- $(".next").html(minArray[0].away);
- $(".nextDest").html(minArray[0].destination);
- 
- 
- }
- */
-
-
 $("#submitButton").on("click", function (event) {
 
     event.preventDefault();
@@ -120,10 +90,6 @@ $("#submitButton").on("click", function (event) {
     var away = frequency - apart;
     var arrival = moment().add(away, "minutes").format("hh:mm");
 
-//    var now = moment();
-//    var time = now.hour() + ':' + now.minutes() + ':' + now.seconds();
-//    console.log(time);
-
 //
     database.ref().push({
         train: train,
@@ -139,24 +105,12 @@ $("#submitButton").on("click", function (event) {
     $("#fieldDest").val("");
     $("#fieldFirstTr").val("");
     $("#fieldFrequency").val("");
-//    var monthsNeg = moment(date, "DD/MM/YY").diff(mome
+    
+    alertify.notify('New train was added', 'custom', 4);
+
 
 });
 
-database.ref().once("child_added", function (snapshot) {
-
-    //console.log(snapshot.val());
-
-    var newTR = $("<tr>");
-    $("#tbody").append(newTR);
-    newTR.append("<td>" + $('#tbody tr').length + "</td>");
-    newTR.append("<td>" + snapshot.val().train + "</td>");
-    newTR.append("<td>" + snapshot.val().destination + "</td>");
-    newTR.append("<td>" + snapshot.val().frequency + "</td>");
-    newTR.append("<td>" + snapshot.val().arrival + "</td>");
-    newTR.append("<td>" + snapshot.val().away + "</td>");
-
-});
 
 $(document).ready(function () {
     setInterval(function () {
